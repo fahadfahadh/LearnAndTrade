@@ -1019,7 +1019,7 @@
       <a href="https://www.youtube.com/@hashimtradingvlogs" target="_blank" class="btn btn-gold">
         <i data-lucide="play-circle" width="16" height="16"></i> Watch Live Analysis
       </a>
-      <a href="#about" class="btn btn-ghost" onclick="scrollTo('about')">
+      <a href="#about" class="btn btn-ghost" onclick="scrollToSection('about')">
         <i data-lucide="info" width="16" height="16"></i> Learn More
       </a>
     </div>
@@ -1767,6 +1767,12 @@
   document.querySelectorAll('.services-grid .svc-card').forEach((el, i) => {
     el.style.transitionDelay = (i * 0.07) + 's';
   });
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
 </script>
+
 </body>
 </html>
