@@ -799,6 +799,122 @@
       animation: shimmer 3s linear infinite;
     }
     @keyframes shimmer { 0%{ background-position: -200% 0; } 100%{ background-position: 200% 0; } }
+
+
+    /* ═══════════════════════ REVIEWS ═══════════════════════ */
+  .reviews-track-wrap {
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+    /* fade edges */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  .reviews-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scrollLeft 40s linear infinite;
+  }
+  .reviews-track.rev-reverse {
+    animation: scrollRight 40s linear infinite;
+  }
+  .reviews-track-wrap:hover .reviews-track {
+    animation-play-state: paused;
+  }
+  @keyframes scrollLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes scrollRight {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .rev-card {
+    width: 320px;
+    flex-shrink: 0;
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .rev-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,168,67,0.25);
+  }
+
+  .rev-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4.5rem;
+    line-height: 0.6;
+    color: var(--gold);
+    opacity: 0.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    display: block;
+    height: 30px;
+  }
+
+  .rev-stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    text-shadow: 0 0 12px rgba(212,168,67,0.5);
+  }
+
+  .rev-text {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 22px;
+    flex: 1;
+  }
+
+  .rev-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border2);
+  }
+
+  .rev-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-dim), rgba(0,201,141,0.1));
+    border: 1.5px solid rgba(212,168,67,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.95rem;
+    color: var(--gold-light);
+    flex-shrink: 0;
+    box-shadow: 0 0 16px rgba(212,168,67,0.15);
+  }
+
+  .rev-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+
+  .rev-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    letter-spacing: 0.04em;
+  }
+
+
   </style>
 </head>
 <body>
@@ -835,6 +951,10 @@
   <button class="nav-btn" data-target="community">
     <i data-lucide="users" width="20" height="20"></i>
     <span class="nav-label">Community</span>
+  </button>
+  <button class="nav-btn" data-target="reviews">
+    <i data-lucide="star" width="20" height="20"></i>
+    <span class="nav-label">Reviews</span>
   </button>
   <button class="nav-btn" data-target="contact">
     <i data-lucide="mail" width="20" height="20"></i>
@@ -1275,6 +1395,201 @@
   </div>
 </section>
 
+<!-- ═══════════════════════ REVIEWS ═══════════════════════ -->
+<section id="reviews" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-badge"><i data-lucide="star" width="12" height="12"></i> Testimonials</div>
+      <h2>What Traders <em style="font-style:italic;color:var(--gold-light)">Say</em></h2>
+      <p>Real feedback from real members of our trading community.</p>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- Marquee row 1 — scrolls left -->
+    <div class="reviews-track-wrap" style="--dir:-1">
+      <div class="reviews-track" id="rt1">
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">Attending this class was a retake for me and it was very beneficial. I feel more confident about my trading journey with this program and learned about spread concept and also know more about FVG, daily candle-wise analysis etc.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">FJ</div>
+            <div>
+              <div class="rev-name">Fahadh Jabbar</div>
+              <div class="rev-tag ab-gold">Options Learner</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">Hashim bhai explains Bank Nifty levels so clearly every morning. I've stopped blindly buying options now — I wait for the level to hit and then act. My success rate has improved a lot since following this channel.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">RK</div>
+            <div>
+              <div class="rev-name">Rahul Krishnan</div>
+              <div class="rev-tag ab-green">Bank Nifty Trader</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">The Iron Condor strategy taught here literally saved my capital during a sideways week. Before this I used to panic whenever the market didn't trend. Now I know exactly what strategy to deploy in what condition.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">PS</div>
+            <div>
+              <div class="rev-name">Priya Suresh</div>
+              <div class="rev-tag ab-blue">Strategy Learner</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">I was losing money consistently before I found this channel. The concept of defined-risk strategies like bull call spread completely changed my mindset. I now know my max loss before I even place the trade. Game changer!</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">AM</div>
+            <div>
+              <div class="rev-name">Arun Menon</div>
+              <div class="rev-tag ab-gold">Nifty Options</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">The daily pre-market levels are so accurate it's unreal. Support and resistance zones get respected so well. I bookmark every video before 9:15 AM and plan my entire day around these levels. Highly recommend to every Nifty trader.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">NV</div>
+            <div>
+              <div class="rev-name">Nisha Varghese</div>
+              <div class="rev-tag ab-green">Daily Levels Fan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">As a beginner, I was scared of options. But Hashim's explanation of Greeks, theta decay, and FVG in simple Malayalam-mixed English made it so easy to understand. This channel is a gem for Kerala-based traders especially.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">SM</div>
+            <div>
+              <div class="rev-name">Suhail Mohammed</div>
+              <div class="rev-tag ab-blue">Beginner Turned Trader</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Marquee row 2 — scrolls right (duplicate cards, reversed) -->
+    <div class="reviews-track-wrap" style="--dir:1;margin-top:20px">
+      <div class="reviews-track rev-reverse" id="rt2">
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">Suhail bhai's simple breakdown of theta decay genuinely helped me stop buying options on expiry day! The live analysis sessions are something I look forward to every single morning before market opens.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">KA</div>
+            <div>
+              <div class="rev-name">Khalid Ansari</div>
+              <div class="rev-tag ab-gold">Live Session Regular</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">The Bear Put Spread strategy explained here helped me hedge my portfolio perfectly during the recent correction. The way risk is always defined before entry — that discipline is what sets this channel apart from random tip channels.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">DP</div>
+            <div>
+              <div class="rev-name">Deepak Pillai</div>
+              <div class="rev-tag ab-green">Hedging Specialist</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">I've watched 100+ channels but none explain FVG and market structure the way Hashim does. The candle-by-candle analysis during live sessions made me realise how much I was missing before. Absolute gold content — pun intended!</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">TA</div>
+            <div>
+              <div class="rev-name">Thariq Ahamed</div>
+              <div class="rev-tag ab-blue">Market Structure Nerd</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">The straddle strategy on budget day was spot on. Hashim explained exactly how to structure the trade, what premium to expect, and when to exit. Made a neat profit while most traders around me were confused about direction.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">JT</div>
+            <div>
+              <div class="rev-name">Jithin Thomas</div>
+              <div class="rev-tag ab-gold">Event Trader</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">What I love most is the honesty — no fake calls, no pump and dump, just real analysis with proper risk disclaimers. In a world full of fraudulent tip providers, this channel is a breath of fresh air. Keep it up Hashim bhai!</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">MR</div>
+            <div>
+              <div class="rev-name">Mohammed Raees</div>
+              <div class="rev-tag ab-green">Long-time Subscriber</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-card glass">
+          <div class="shimmer-top"></div>
+          <div class="rev-quote">"</div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-text">Joined just 3 months ago and already feel like a completely different trader. The stock analysis section helped me identify two multibagger setups early. The community vibe is also super positive — everyone helps each other grow.</p>
+          <div class="rev-footer">
+            <div class="rev-avatar">AL</div>
+            <div>
+              <div class="rev-name">Asha Lekha</div>
+              <div class="rev-tag ab-blue">Stock Analyst</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══════════════════════ DISCLAIMER ═══════════════════════ -->
 <section id="disclaimer" class="section" style="padding-top:0">
   <div class="container-sm">
@@ -1380,7 +1695,7 @@
 
   // ─── Nav scroll ───
   const navBtns   = document.querySelectorAll('.nav-btn');
-  const sectionIds = ['home','about','services','analysis','stats','community','contact'];
+  const sectionIds = ['home','about','services','analysis','stats','reviews','community','contact'];
 
   function updateNav() {
     const sp = window.scrollY + window.innerHeight / 2.5;
@@ -1435,7 +1750,7 @@
     const msg  = document.getElementById('c-msg').value.trim();
     if (!name || !msg) { alert('Please fill your name and message.'); return; }
     const text = encodeURIComponent(`Name: ${name}\n\nMessage: ${msg}`);
-    window.open(`https://wa.me/91XXXXXXXXXX?text=${text}`, '_blank');
+    window.open(`https://wa.me/918089426736?text=${text}`, '_blank');
   }
 
   // ─── Stagger reveal delay ───
