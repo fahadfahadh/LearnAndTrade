@@ -2039,14 +2039,6 @@
       <i data-lucide="calendar-check" width="20" height="20"></i>
       <span class="nav-label">Workshop</span>
     </button>
-    <button class="nav-btn" data-target="stats">
-      <i data-lucide="trending-up" width="20" height="20"></i>
-      <span class="nav-label">Stats</span>
-    </button>
-    <button class="nav-btn" data-target="community">
-      <i data-lucide="users" width="20" height="20"></i>
-      <span class="nav-label">Community</span>
-    </button>
     <button class="nav-btn" data-target="reviews">
       <i data-lucide="star" width="20" height="20"></i>
       <span class="nav-label">Reviews</span>
@@ -2432,10 +2424,10 @@
       </div>
 
       <div class="ws-cta-container reveal" style="transition-delay:0.45s; text-align: center; margin-top: 36px; padding-bottom: 20px;">
-        <a href="https://wa.me/918089426736?text=I%20would%20like%20to%20attend%20the%207%20days%20class" target="_blank" class="btn btn-wa" style="display:inline-flex; align-items:center; justify-content:center; padding: 18px 36px; font-size: 16px; border-radius: 9999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease;">
+        <button onclick="openWorkshopWA()" class="btn btn-wa" style="display:inline-flex; align-items:center; justify-content:center; padding: 18px 36px; font-size: 16px; border-radius: 9999px; font-weight: 600; border:none; cursor: pointer; transition: all 0.3s ease;">
           <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="margin-right: 10px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.524 5.847L.057 23.882l6.198-1.631A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.658-.499-5.188-1.369l-.372-.22-3.681.968.985-3.594-.242-.38A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
           Register via WhatsApp
-        </a>
+        </button>
       </div>
 
     </div>
@@ -2800,7 +2792,7 @@
 
     // ─── Nav scroll ───
     const navBtns = document.querySelectorAll('.nav-btn');
-    const sectionIds = ['home', 'about', 'services', 'analysis', 'workshop', 'strategy', 'stats', 'community', 'reviews', 'contact'];
+    const sectionIds = ['home', 'about', 'services', 'analysis', 'workshop', 'reviews', 'contact'];
 
     function updateNav() {
       const sp = window.scrollY + window.innerHeight / 2.5;
@@ -2850,12 +2842,25 @@
     counters.forEach(c => cio.observe(c));
 
     // ─── WhatsApp send ───
+    function openWhatsApp(phone, text) {
+      const encodedText = encodeURIComponent(text);
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.open(`whatsapp://send?phone=${phone}&text=${encodedText}`, '_self');
+      } else {
+        window.open(`https://web.whatsapp.com/send?phone=${phone}&text=${encodedText}`, '_blank');
+      }
+    }
+
     function sendWA() {
       const name = document.getElementById('c-name').value.trim();
       const msg = document.getElementById('c-msg').value.trim();
       if (!name || !msg) { alert('Please fill your name and message.'); return; }
-      const text = encodeURIComponent(`Name: ${name}\n\nMessage: ${msg}`);
-      window.open(`https://wa.me/918089426736?text=${text}`, '_blank');
+      openWhatsApp('918089426736', `Name: ${name}\n\nMessage: ${msg}`);
+    }
+
+    function openWorkshopWA() {
+      openWhatsApp('918089426736', 'I would like to attend the 7 days class');
     }
 
     // ─── Stagger reveal delay ───
